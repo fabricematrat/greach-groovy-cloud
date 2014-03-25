@@ -50,7 +50,17 @@
     <div class="ft-page" data-id="Corinne" data-title="Corinne">
         <div class="stack-center">
             <div class="stacked-center">
-                <h1>Cedric Champeau</h1>
+                <h1>Cédric Champeau</h1>
+                <p style=" font-size: 30px;  ">alias <strong class="greach">melix</strong></p>
+                <img class="stacked-center" width="20%" src="img/cedric_champeau.jpg"/><br/>
+                <p style=" font-size: 20px;  ">@CedricChampeau<br/>cedric.champeau@gmail.com<br/>https://github.com/melix<br/>http://www.gopivotal.com</p>
+                <div style="width: 100%">
+                    <ul>
+                        <li>Full-time Groovy developer</li>
+                        <li>AST transformation hacker</li>
+                        <li>Responsible for the type checker and static compiler</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -96,6 +106,67 @@
             <div class="stacked-center">
                 <h1>How to contribute</h1>
                 <hr/><br/>
+            </div>
+        </div>
+    </div>
+
+    <div class="ft-page" data-id="Contribution Step 1" data-title="Contribution - Step 1">
+        <div class="stack-center">
+            <div class="stacked-center">
+                <h1>Step 1 - Use Case</h1>
+                <hr/><br/>
+                <ul>
+                    <li>Identify a<strong class="greach">problem</strong> or a widely used, but unsupported <strong class="greach">technology</strong></li>
+                    <li>No need to be <strong class="greach">brilliant</strong> or require huge work. You only have to solve a <strong>problem</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="ft-page" data-id="Contribution Step 2" data-title="Contribution - Step 2">
+        <div class="stack-center">
+            <div class="stacked-center">
+                <h1>Step 2 - Find a mentor</h1>
+                <hr/><br/>
+                <div style="font-size: 25px; text-align: center; display: inline-block; width: 50%">
+                    <img src="img/hackathon-mentor.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ft-page" data-id="Contribution Step 3" data-title="Contribution - Step 3">
+        <div class="stack-center">
+            <div class="stacked-center">
+                <h1>Step 3 - Work hard</h1>
+                <hr/><br/>
+                <div style="font-size: 25px; text-align: center; display: inline-block; width: 50%">
+                    <img src="img/hackathon-work.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ft-page" data-id="Contribution Step 4" data-title="Contribution - Step 4">
+        <div class="stack-center">
+            <div class="stacked-center">
+                <h1>Step 4 - Have fun</h1>
+                <hr/><br/>
+                <div style="font-size: 25px; text-align: center; display: inline-block; width: 50%">
+                    <img src="img/hackathon-fun.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ft-page" data-id="Contribution Step 5" data-title="Contribution - Step 5">
+        <div class="stack-center">
+            <div class="stacked-center">
+                <h1>Step 5 - Pull Request</h1>
+                <hr/><br/>
+                <div style="font-size: 25px; text-align: center; display: inline-block; width: 50%">
+                    <img src="img/pull-request.png">
+                </div>
             </div>
         </div>
     </div>
@@ -232,7 +303,7 @@ scriptMethod()</code></pre>
 def customizer = new SecureASTCustomizer()
 
 customizer.with {
-   setReceiversBlackList(["java.lang.System"])
+   receiversBlackList = ["java.lang.System"]
 }
 
 configuration.addCompilationCustomizers(customizer)
@@ -247,10 +318,10 @@ new GroovyShell(configuration).evaluate("System.exit(-1)")</code></pre>
                 <h1>But this ?</h1>
                 <hr/><br/>
                  <pre><code class="language-javascript">def configuration = new CompilerConfiguration()
-def customizer = new SecureASTCustomizer()
+def customizer = new SecureRuntimeASTCustomizer()
 
 customizer.with {
-   setReceiversBlackList(["java.lang.System"])
+   receiversBlackList = ["java.lang.System"]
 }
 
 configuration.addCompilationCustomizers(customizer)
@@ -280,8 +351,8 @@ new GroovyShell(configuration).evaluate("((Object)System).exit(-1)")</code></pre
                 <h1>What's missing ?</h1>
                 <hr/><br/>
                 <ul>
-                    <li>Works with <strong class="greach">CallSite Caching</strong></li>
-                    <li>Issue with <strong>InvokeDynamics</strong></li>
+                    <li>Works with <strong class="greach">CallSite caching</strong></li>
+                    <li>Issue with <strong>InvokeDynamic</strong></li>
                     <li>Issue with <strong>Static type checking</strong></li>
                 </ul>
             </div>
@@ -300,7 +371,7 @@ new GroovyShell(configuration).evaluate("((Object)System).exit(-1)")</code></pre
                  <pre><code class="language-javascript">groovyAccessControl.checkCall(((Object)System),
                                 "exit",
                                 [-1],
-                                { System.exit(-1) })</code></pre>
+                                { receiver, methodName, args -> ... something doing the call... })</code></pre>
             </div>
         </div>
     </div>
