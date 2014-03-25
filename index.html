@@ -288,7 +288,7 @@ scriptMethod()</code></pre>
             <div class="stacked-center">
                 <h1>API Control</h1>
                 <hr/><br/>
-                 <pre><code class="language-javascript">System.exit(-1)</code></pre>
+                <pre><code class="language-javascript">System.exit(-1)</code></pre>
             </div>
         </div>
     </div>
@@ -326,6 +326,27 @@ customizer.with {
 
 configuration.addCompilationCustomizers(customizer)
 new GroovyShell(configuration).evaluate("((Object)System).exit(-1)")</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="ft-page" data-id="Ways" data-title="Ways">
+        <div class="stack-center">
+            <div class="stacked-center">
+                <h1>But how many ways ?</h1>
+                <hr/><br/>
+				<ul class="steps">
+					<li class="ft-fragment">System.exit(0)</li>
+					<li class="ft-fragment">Eval.me("System.exit(0)")</li>
+					<li class="ft-fragment">evaluate("System.exit(0)")</li>
+					<li class="ft-fragment">(new GroovyShell()).evaluate("System.exit(0)")</li>
+					<li class="ft-fragment">Class.forName("java.lang.System").exit(0)</li>
+					<li class="ft-fragment">System.&exit.call(0)</li>
+					<li class="ft-fragment">System.getMetaClass().invokeMethod("exit",0)</li>
+					<li class="ft-fragment">def s = System; s.exit(0)</li>
+					<li class="ft-fragment">Script t = this; t.evaluate("System.exit(0)")</li>
+					<li class="ft-fragment">def s = “exit”; System.”$s”(0)</li>
+				</ul>
             </div>
         </div>
     </div>
